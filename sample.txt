@@ -1,6 +1,7 @@
 /*
 	PRINT MATRIX IN SPIRAL FASHION (SECOND ALGORITHM)
 
+			
 	
 		k is row pointer   l is col pointer
 		r = 4   c = 4    size is 4   so r c are limits pointer
@@ -20,7 +21,7 @@
 												   // once the loop is finished, increment k row pointer: next iteration goes top bottom: if you don't increment,
 												   // last iterated data from this loop will get repeated. 
 
-				for(i=k; i < r; k++) {	sop(matrix[i][c-1]; } c--;                 // top bottom iteration. i referes to k row pointer AS STARTIN POINT. k cannot exceed the r size pointer so i has to be less than r size limit.
+				for(i=k; i < r; i++) {	sop(matrix[i][c-1]; } c--;                 // top bottom iteration. i referes to k row pointer AS STARTIN POINT. k cannot exceed the r size pointer so i has to be less than r size limit.
 												   // c-1 is the last col: you don't change col here. AT EACH STEP INCREASE THE POINTER i, NOT THE REFERENCE k;
 												   // after the for loop decrement c to avoid nullPointerException in next loops (c = 4 nullPointer).
 
@@ -45,3 +46,62 @@
 		} 
 
 */
+
+public class Spiral {
+	public Spiral () {}
+
+	public static void printMatrixSpiral(int[][] matrix, int r, int c) {
+
+		int k = 0;
+		int l = 0;
+		int i = 0;
+
+		while( k < r && l < c) {
+
+			for (i = l; i < c; i++) {
+                        	System.out.print(matrix[k][i] + " ");
+			}
+			k++;
+
+			for (i = k; i < r; i++) {
+				System.out.print(matrix[i][c-1] + " ");
+			}
+			c--;
+
+			if (k < r) {
+			
+				for (i = c-1; i >= l; i--) {
+					System.out.print(matrix[r-1][i] + " ");
+				}
+				r--;
+			}
+			
+			if (l < c) {
+			
+				for (i = r-1; i >= k; i--) {
+					System.out.print(matrix[i][l] + " ");
+				}
+				l++;
+			} 
+		}	
+
+	}
+
+	
+	public static void main(String[] args) {
+		Spiral s = new Spiral();
+		
+		int[][] m = {
+				{1,2,3,4},
+				{5,6,7,8},			
+				{9,10,11,12},	
+				{13,14,15,16},										
+			};
+
+		int rowSize = 4;
+		int colSize = 4;
+		
+		s.printMatrixSpiral(m, rowSize, colSize);
+	}
+	
+}
